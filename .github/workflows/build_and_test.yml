@@ -48,8 +48,6 @@ jobs:
       - name: Check for Tag
         id: check_tag
         run: echo "tag=$(git tag --contains $GITHUB_SHA)"
-      - name: Git show
-        run: git show
       - name: debug
         run: echo ${{ steps.check_tag.outputs.tag }}
       - name: Install yarn dependencies
