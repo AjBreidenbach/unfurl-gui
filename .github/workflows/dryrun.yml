@@ -1,5 +1,5 @@
 
-name: Dryrun
+name: Dryrun Extra
 on:
   workflow_run:
     workflows: ["Build and Test"]
