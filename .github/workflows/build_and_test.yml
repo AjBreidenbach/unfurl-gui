@@ -45,6 +45,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Check for Tag
+        id: check_tag
+        run: echo "tag=$(git tag --contains $GITHUB_SHA)"
+      - name: Git show
+        run: git show
+      - name: debug
+        run: echo ${{ steps.check_tag.outputs.tag }}
       - name: Install yarn dependencies
         run: npm i -g yarn && YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
         # TODO add back ufsv-patch -- --runInBand
@@ -89,12 +96,6 @@ jobs:
         with:
           name: unfurl-gui-dist
           path: unfurl-gui-dist.tar.gz
-      - name: Check for Tag
-        id: check_tag
-        run: |
-          TAG=$(git tag --contains $GITHUB_SHA)
-          echo "::set-output name=tag::$TAG"
-
       - name: Create GitHub Release
         if: ${{ steps.check_tag.outputs.tag != '' }}
         uses: softprops/action-gh-release@v2
