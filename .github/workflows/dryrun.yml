@@ -1,10 +1,7 @@
 
 name: Dryrun Extra
 on:
-  workflow_run:
-    workflows: ["Build, Test, Release"]
-    types:
-      - completed
+  workflow_dispatch:
 
 # copied from build_and_test.yml
 env:
