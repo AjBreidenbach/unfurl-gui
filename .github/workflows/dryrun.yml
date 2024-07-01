@@ -38,7 +38,6 @@ env:
 jobs:
   dryrun_a:
     name: Dryrun A
-    if: "github.event.workflow_run.conclusion == 'success' && startsWith(github.ref, 'refs/heads/')"
     env:
       SPEC_GLOBS: aws* az*
       SPEC_SKIP_GLOBS: '*container-webapp* *nestedcloud* *draft aws__baserow*' # we already ran baserow
